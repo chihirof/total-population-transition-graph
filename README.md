@@ -22,10 +22,10 @@
 
 1. Node.js v16 系をインストールする
 1. リポジトリをクローンする
-1. パッケージインストール
+1. プロジェクト init
    ```
    $ cd total-population-transition-graph
-   $ npm install
+   $ bin/init
    ```
 1. prettier 利用のため、vscode に以下の拡張機能をインストールする
    - https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
