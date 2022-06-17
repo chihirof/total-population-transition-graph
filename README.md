@@ -7,21 +7,28 @@
 
 ## 開発
 
-### 技術要素
+### 技術要素、環境
 
 - React
 - TypeScript
 - vite
 
+環境
+
+- Node.js v16 系
+- vscode
+
 ### 環境構築
 
-1. Node.js v16系をインストールする
+1. Node.js v16 系をインストールする
 1. リポジトリをクローンする
 1. パッケージインストール
-    ```
-    $ cd total-population-transition-graph
-    $ npm install
-    ```
+   ```
+   $ cd total-population-transition-graph
+   $ npm install
+   ```
+1. prettier 利用のため、vscode に以下の拡張機能をインストールする
+   - https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
 
 ### アプリ起動
 
@@ -30,6 +37,7 @@
   ```
   $ npm run dev
   ```
+
 ### 開発その他
 
 #### eslint
@@ -44,3 +52,10 @@ $ npm run lint
 $ npm run lint-fix
 ```
 
+#### prettier
+
+- vscode では、ファイル保存時に自動的に整形される
+- 以下のコマンドで一括実行も可能
+  ```
+  $ npm run fmt-fix
+  ```
