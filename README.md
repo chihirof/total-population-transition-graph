@@ -5,7 +5,32 @@
 - [フロントエンドコーディング試験](https://notion.yumemi.co.jp/0e9ef27b55704d7882aab55cc86c999d)
 - [ワイヤーフレーム](https://notion.yumemi.co.jp/ab4a837f8e764dffb0fc93c7b1387af7)
 
-### develop
+## 開発
+
+### 技術要素
+
+- React
+- TypeScript
+- vite
+
+### 環境構築
+
+1. Node.js v16系をインストールする
+1. リポジトリをクローンする
+1. パッケージインストール
+    ```
+    $ cd total-population-transition-graph
+    $ npm install
+    ```
+
+### アプリ起動
+
+- 開発サーバー起動
+
+  ```
+  $ npm run dev
+  ```
+### 開発その他
 
 #### eslint
 
