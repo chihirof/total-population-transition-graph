@@ -16,8 +16,18 @@ jobs:
         with:
           node-version: 16
 
-      - name: init project
-        run: bin/init
+      - name: cache node_modules
+        id: cache-node_modules-id
+        env:
+          cache-name: cache-node_modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
+
+      - name: install package
+        if: ${{ steps.cache-node_modules-id.outputs.cache-hit != 'true' }}
+        run: npm install
 
       - name: run lint
         run: npm run lint
