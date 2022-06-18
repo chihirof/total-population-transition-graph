@@ -16,8 +16,18 @@ jobs:
         with:
           node-version: 16
 
-      - name: init project
-        run: bin/init
+      - name: cache node_modules
+        id: cache_node_modules_test
+        env:
+          cache-name: cache_node_modules_test
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
+
+      - name: install package
+        if: ${{ steps.cache_node_modules_test.outputs.cache-hit != 'true' }}
+        run: npm install
 
       - name: run test
         run: npm test
