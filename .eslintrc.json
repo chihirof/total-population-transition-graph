@@ -17,12 +17,12 @@
   "rules": {
     "react/jsx-filename-extension": [
       "error",
-      { "extensions": [".jsx", ".tsx"] }
+      { "extensions": [".jsx", ".tsx", "js"] }
     ],
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": ["./vite.config.ts"],
+        "devDependencies": ["./vite.config.ts", "__tests__/**"],
         "peerDependencies": false
       }
     ],
