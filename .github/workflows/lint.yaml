@@ -19,7 +19,7 @@ jobs:
       - name: cache node_modules
         id: cache_node_modules_lint
         env:
-          cache-name: cache-node_modules
+          cache-name: cache_node_modules_lint
         uses: actions/cache@v3
         with:
           path: node_modules
