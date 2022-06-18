@@ -65,3 +65,12 @@ $ npm run lint-fix
   ```
   $ npm run fmt-fix
   ```
+
+#### CI
+
+GitHub Actions を用いて、以下が実行されている。
+
+| 内容 | 実行タイミング |
+| ---- | -------------- |
+| lint | push 時        |
+| test | push 時        |
