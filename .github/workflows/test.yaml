@@ -1,0 +1,23 @@
+name: Run test
+
+on: push
+
+jobs:
+  run-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+
+      - name: set up Node.js v16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: init project
+        run: bin/init
+
+      - name: run test
+        run: npm test
