@@ -2,12 +2,12 @@ import React from "react";
 import axios from "axios";
 import { render, waitFor, screen } from "@testing-library/react";
 
-import App from "../src/components/page/App/App";
+import PopulationGraph from "../src/components/page/PopulationGraph/PopulationGraph";
 
 jest.mock("axios");
 jest.mock("../src/api/apiKey");
 
-describe("App", () => {
+describe("PopulationGraph", () => {
   it("画面表示時に都道府県データが表示されている", async () => {
     axios.get.mockResolvedValue({
       data: {
@@ -19,7 +19,7 @@ describe("App", () => {
         ],
       },
     });
-    render(<App />);
+    render(<PopulationGraph />);
     await waitFor(() => screen.getByText("北海道"));
 
     expect(screen.getByText("北海道")).toBeTruthy();

@@ -1,12 +1,12 @@
 import React from "react";
-import "./App.css";
+import "./PopulationGraph.css";
 import { usePrefectures } from "../../../hooks/usePrefectures";
 
-function App() {
+function PopulationGraph() {
   const prefectures = usePrefectures();
 
   return (
-    <div className="App">
+    <div className="PopulationGraph">
       {prefectures.map(({ prefCode, prefName }) => (
         <p key={prefCode}>{prefName}</p>
       ))}
@@ -14,4 +14,4 @@ function App() {
   );
 }
 
-export default App;
+export default PopulationGraph;
