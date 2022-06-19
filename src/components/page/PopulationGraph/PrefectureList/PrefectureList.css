@@ -1,0 +1,9 @@
+.prefectureList {
+  display: flex;
+  flex-direction: column;
+}
+
+.prefectureItems {
+  display: flex;
+  flex-wrap: wrap;
+}
