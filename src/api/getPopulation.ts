@@ -1,15 +1,21 @@
 import axios from "axios";
-import { Populations } from "../types";
+import { PrefecturePopulation } from "../types";
 
 import { getApiKey } from "./apiKey";
-import { API_ENDPOINT, API_POPULATION_PATH } from "./constants";
+import {
+  API_ENDPOINT,
+  API_POPULATION_PATH,
+  API_POPULATION_PARAM_DEFAULT_CITYCODE,
+} from "./constants";
 
-export const getPopulation = async (prefCode: number): Promise<Populations> => {
+export const getPopulation = async (
+  prefCode: number
+): Promise<PrefecturePopulation> => {
   const response = await axios.get(`${API_ENDPOINT}${API_POPULATION_PATH}`, {
     headers: { "X-API-KEY": getApiKey() },
     params: {
       prefCode,
-      cityCode: "-",
+      cityCode: API_POPULATION_PARAM_DEFAULT_CITYCODE,
     },
   });
 
@@ -18,5 +24,10 @@ export const getPopulation = async (prefCode: number): Promise<Populations> => {
     throw new Error(`statusCode: ${statusCode} / message: ${message}`);
   }
 
-  return response.data.result.data.find((d: any) => d.label === "総人口").data;
+  return {
+    prefCode,
+    populations: response.data.result.data.find(
+      (d: any) => d.label === "総人口"
+    ).data,
+  };
 };

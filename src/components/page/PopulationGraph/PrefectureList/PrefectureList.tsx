@@ -3,23 +3,25 @@ import React from "react";
 import "./PrefectureList.css";
 import { usePrefectures } from "../../../../hooks/usePrefectures";
 import PrefectureCheckBox from "../PrefectureCheckBox/PrefectureCheckBox";
-import { Populations, Prefecture } from "../../../../types";
+import { Prefecture, PrefecturePopulation } from "../../../../types";
 import { getPopulation } from "../../../../api/getPopulation";
 
 type Props = {
-  setPopulations: (populations: Populations) => void;
+  displayValue: PrefecturePopulation[];
+  setDisplayValue: (populations: PrefecturePopulation[]) => void;
 };
 
 function PrefectureList(props: Props) {
-  const { setPopulations } = props;
+  const { displayValue, setDisplayValue } = props;
   const prefectures = usePrefectures();
   const onChange = async (selected: boolean, prefecture: Prefecture) => {
-    // eslint-disable-next-line no-console
-    console.log("selected: ", selected, " / ", "prefecture: ", prefecture);
     if (selected) {
-      const result = await getPopulation(prefecture.prefCode);
-      // TODO もともと洗濯しているものが差し代わってしまう。追加する形にしたい。
-      setPopulations(result);
+      const prefecturePopulation = await getPopulation(prefecture.prefCode);
+      setDisplayValue([...displayValue, prefecturePopulation]);
+    } else {
+      setDisplayValue(
+        displayValue.filter((v) => v.prefCode !== prefecture.prefCode)
+      );
     }
   };
 

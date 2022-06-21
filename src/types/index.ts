@@ -8,4 +8,7 @@ export type Population = {
   year: number;
   value: number;
 };
-export type Populations = Population[];
+export type PrefecturePopulation = {
+  prefCode: number;
+  populations: Population[];
+};
