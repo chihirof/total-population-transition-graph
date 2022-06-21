@@ -2,7 +2,7 @@ import React from "react";
 
 import "./PrefectureList.css";
 import { usePrefectures } from "../../../../hooks/usePrefectures";
-import PrefectureCheckBox from "../../../ui/PrefectureCheckBox/PrefectureCheckBox";
+import PrefectureCheckBox from "../PrefectureCheckBox/PrefectureCheckBox";
 import { Prefecture } from "../../../../types";
 
 function PrefectureList() {
