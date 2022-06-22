@@ -2,14 +2,14 @@ import React from "react";
 import axios from "axios";
 import { render, waitFor, screen } from "@testing-library/react";
 
-import PopulationGraph from "../src/components/page/PopulationGraph/PopulationGraph";
+import Main from "../src/components/page/Main/Main";
 
 jest.mock("axios");
 jest.mock("../src/api/apiKey");
 
 const spyLogError = jest.spyOn(console, "error");
 
-describe("PopulationGraph", () => {
+describe("Main", () => {
   afterEach(() => {
     axios.get.mockReset();
     spyLogError.mockClear();
@@ -28,7 +28,7 @@ describe("PopulationGraph", () => {
       },
     });
 
-    render(<PopulationGraph />);
+    render(<Main />);
     await waitFor(() => screen.getByText(prefectures[0].prefName));
     prefectures.forEach((pref) => {
       expect(screen.getByText(pref.prefName)).toBeTruthy();
@@ -42,7 +42,7 @@ describe("PopulationGraph", () => {
       message: errorMessage,
     });
 
-    render(<PopulationGraph />);
+    render(<Main />);
     await waitFor(() => expect(spyLogError).toHaveBeenCalledTimes(1));
     expect(spyLogError).toHaveBeenCalledWith(errorMessage);
   });
@@ -56,7 +56,7 @@ describe("PopulationGraph", () => {
       },
     });
 
-    render(<PopulationGraph />);
+    render(<Main />);
     await waitFor(() => expect(spyLogError).toHaveBeenCalledTimes(1));
     expect(spyLogError).toHaveBeenCalledWith(
       "statusCode: 403 / message: Forbidden."

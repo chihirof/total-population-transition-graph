@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import PopulationGraph from "./components/page/PopulationGraph/PopulationGraph";
+import Main from "./components/page/Main/Main";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <PopulationGraph />
+    <Main />
   </React.StrictMode>
 );

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { PrefecturePopulation } from "../../../types";
 
-import "./PopulationGraph.css";
+import "./Main.css";
 import PrefectureList from "./PrefectureList/PrefectureList";
 
-function PopulationGraph() {
+function Main() {
   const [displayValue, setDisplayValue] = useState<PrefecturePopulation[]>([]);
   return (
-    <div className="populationGraph">
+    <div className="main">
       <PrefectureList
         displayValue={displayValue}
         setDisplayValue={setDisplayValue}
@@ -21,4 +21,4 @@ function PopulationGraph() {
   );
 }
 
-export default PopulationGraph;
+export default Main;
