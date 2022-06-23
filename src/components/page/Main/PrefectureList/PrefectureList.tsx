@@ -16,8 +16,15 @@ function PrefectureList(props: Props) {
   const prefectures = usePrefectures();
   const onChange = async (selected: boolean, prefecture: Prefecture) => {
     if (selected) {
-      const prefecturePopulation = await getPopulation(prefecture.prefCode);
-      setDisplayValue([...displayValue, prefecturePopulation]);
+      try {
+        const prefecturePopulation = await getPopulation(prefecture.prefCode);
+        setDisplayValue([...displayValue, prefecturePopulation]);
+      } catch (err: any) {
+        // TODO エラー処理
+        // トーストを表示したい
+        // eslint-disable-next-line no-console
+        console.error(err.message);
+      }
     } else {
       setDisplayValue(
         displayValue.filter((v) => v.prefCode !== prefecture.prefCode)

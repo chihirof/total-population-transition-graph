@@ -86,13 +86,63 @@ describe("人口グラフの表示", () => {
     expect(screen.getByText(populations[1].value)).toBeTruthy();
   });
 
-  it.todo("チェックボックスの選択を外したら、選択した都道府県のデータが消える");
+  it("チェックボックスの選択を外したら、選択した都道府県のデータが消える", async () => {
+    mockAxiosGet();
 
-  it.todo(
-    "人口データ取得に失敗した場合(axiosのエラー)、エラーログが表示される"
-  );
+    await displayPrefectures();
 
-  it.todo(
-    "人口データ取得に失敗した場合(RESASのエラー)、エラーログが表示される"
-  );
+    fireEvent.click(screen.getByText(prefectures[0].prefName));
+    await waitFor(() => screen.getByText(populations[0].value));
+
+    fireEvent.click(screen.getByText(prefectures[0].prefName));
+    await waitFor(() =>
+      expect(screen.queryByText(populations[0].value)).toBeFalsy()
+    );
+    expect(screen.queryByText(populations[1].value)).toBeFalsy();
+  });
+
+  it("人口データ取得に失敗した場合(axiosのエラー)、エラーログが表示される", async () => {
+    const errorMessage = "Error in axios";
+    axios.get.mockImplementation((path) => {
+      if (path === `${API_ENDPOINT}${API_PREFECTURES_PATH}`) {
+        return Promise.resolve(prefectureResponse);
+      }
+      if (path === `${API_ENDPOINT}${API_POPULATION_PATH}`) {
+        return Promise.reject(new Error(errorMessage));
+      }
+      return null;
+    });
+
+    await displayPrefectures();
+
+    fireEvent.click(screen.getByText(prefectures[0].prefName));
+    await waitFor(() => expect(spyLogError).toHaveBeenCalledTimes(1));
+    expect(spyLogError).toHaveBeenCalledWith(errorMessage);
+  });
+
+  it("人口データ取得に失敗した場合(RESASのエラー)、エラーログが表示される", async () => {
+    axios.get.mockImplementation((path) => {
+      if (path === `${API_ENDPOINT}${API_PREFECTURES_PATH}`) {
+        return Promise.resolve(prefectureResponse);
+      }
+      if (path === `${API_ENDPOINT}${API_POPULATION_PATH}`) {
+        return Promise.resolve({
+          data: {
+            statusCode: 403,
+            message: "Forbidden.",
+            description: "",
+          },
+        });
+      }
+      return null;
+    });
+
+    await displayPrefectures();
+
+    fireEvent.click(screen.getByText(prefectures[0].prefName));
+    await waitFor(() => expect(spyLogError).toHaveBeenCalledTimes(1));
+    expect(spyLogError).toHaveBeenCalledWith(
+      "statusCode: 403 / message: Forbidden."
+    );
+  });
 });
