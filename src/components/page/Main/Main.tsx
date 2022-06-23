@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { PrefecturePopulation } from "../../../types";
 
 import "./Main.css";
+import PopulationGraph from "./PopulationGraph/PopulationGraph";
 import PrefectureList from "./PrefectureList/PrefectureList";
 
 function Main() {
@@ -12,11 +13,7 @@ function Main() {
         displayValue={displayValue}
         setDisplayValue={setDisplayValue}
       />
-      {displayValue.map((prefecturePopulation: PrefecturePopulation) =>
-        prefecturePopulation.populations.map((yearPopulation) => (
-          <span key={yearPopulation.value}>{yearPopulation.value} </span>
-        ))
-      )}
+      <PopulationGraph displayValue={displayValue} />
     </div>
   );
 }
