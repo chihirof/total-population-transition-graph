@@ -43,19 +43,19 @@
 #### test
 
 ```
-$ npm test
+$ bin/test
 ```
 
 #### eslint
 
 ```
-$ npm run lint
+$ bin/lint
 ```
 
 もしくは、以下のコマンドで警告が自動修正される。
 
 ```
-$ npm run lint-fix
+$ bin/lint-fix
 ```
 
 #### prettier
