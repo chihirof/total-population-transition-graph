@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { render, waitFor, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { mockConsoleMethod } from "./testUtiles";
 
 import Main from "../src/components/page/Main/Main";
 import {
@@ -13,6 +14,12 @@ import {
 jest.mock("axios");
 jest.mock("../src/api/apiKey");
 
+const ignoreMessages = [
+  "statusCode: 403 / message: Forbidden.",
+  "Error in axios",
+];
+// eslint-disable-next-line no-console
+console.error = jest.fn(mockConsoleMethod(console.error, ignoreMessages));
 const spyLogError = jest.spyOn(console, "error");
 
 const prefectures = [

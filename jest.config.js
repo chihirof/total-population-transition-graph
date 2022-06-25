@@ -7,4 +7,5 @@ module.exports = {
     "\\.(css|less)$": "identity-obj-proxy",
   },
   testEnvironment: "jsdom",
+  testMatch: ["**/__tests__/**/*.test.js"],
 };
