@@ -7,18 +7,18 @@ import { Prefecture, PrefecturePopulation } from "../../../../types";
 import { getPopulation } from "../../../../api/getPopulation";
 
 type Props = {
-  displayValue: PrefecturePopulation[];
-  setDisplayValue: (populations: PrefecturePopulation[]) => void;
+  displayValues: PrefecturePopulation[];
+  setDisplayValues: (populations: PrefecturePopulation[]) => void;
 };
 
 function PrefectureList(props: Props) {
-  const { displayValue, setDisplayValue } = props;
+  const { displayValues, setDisplayValues } = props;
   const prefectures = usePrefectures();
   const onChange = async (selected: boolean, prefecture: Prefecture) => {
     if (selected) {
       try {
         const prefecturePopulation = await getPopulation(prefecture.prefCode);
-        setDisplayValue([...displayValue, prefecturePopulation]);
+        setDisplayValues([...displayValues, prefecturePopulation]);
       } catch (err: any) {
         // TODO エラー処理
         // トーストを表示したい
@@ -26,8 +26,8 @@ function PrefectureList(props: Props) {
         console.error(err.message);
       }
     } else {
-      setDisplayValue(
-        displayValue.filter((v) => v.prefCode !== prefecture.prefCode)
+      setDisplayValues(
+        displayValues.filter((v) => v.prefCode !== prefecture.prefCode)
       );
     }
   };

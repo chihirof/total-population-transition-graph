@@ -6,14 +6,16 @@ import PopulationGraph from "./PopulationGraph/PopulationGraph";
 import PrefectureList from "./PrefectureList/PrefectureList";
 
 function Main() {
-  const [displayValue, setDisplayValue] = useState<PrefecturePopulation[]>([]);
+  const [displayValues, setDisplayValues] = useState<PrefecturePopulation[]>(
+    []
+  );
   return (
     <div className="main">
       <PrefectureList
-        displayValue={displayValue}
-        setDisplayValue={setDisplayValue}
+        displayValues={displayValues}
+        setDisplayValues={setDisplayValues}
       />
-      <PopulationGraph displayValue={displayValue} />
+      <PopulationGraph displayValues={displayValues} />
     </div>
   );
 }

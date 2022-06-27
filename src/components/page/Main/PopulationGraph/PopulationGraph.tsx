@@ -10,10 +10,10 @@ import {
 import { PrefecturePopulation } from "../../../../types";
 
 type Props = {
-  displayValue: PrefecturePopulation[];
+  displayValues: PrefecturePopulation[];
 };
 function PopulationGraph(props: Props) {
-  const { displayValue } = props;
+  const { displayValues } = props;
   const chartData = [
     { name: "Page A", uv: 100 },
     { name: "Page B", uv: 200 },
@@ -29,7 +29,7 @@ function PopulationGraph(props: Props) {
         <YAxis />
         <Tooltip />
       </LineChart>
-      {displayValue.map((prefecturePopulation: PrefecturePopulation) =>
+      {displayValues.map((prefecturePopulation: PrefecturePopulation) =>
         prefecturePopulation.populations.map((yearPopulation) => (
           <span
             key={yearPopulation.value}
